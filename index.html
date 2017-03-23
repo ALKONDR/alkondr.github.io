@@ -1,31 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-	<meta charset="UTF-8">
-	<title>Fintech Tinkoff</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/style.css">
-	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <title>TODO List</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<button type="button" class="btn btn-primary btn-lg btn-block" onclick="action();">Press me</button>
-
-	<table class="table">
-		<thead class="thead-inverse">
-			<tr>
-				<th>First word</th>
-				<th>Second word</th>
-				<th>Result</th>
-				<th>Delete</th>
-			</tr>
-		</thead>
-		<tbody id="ResultsTable">
-		</tbody>
-	</table>
-
-
-	<script src="js/app.js"></script>
+<h1 class="head">TODO List</h1>
+<div class="container">
+  <div class="add-task">
+    <input class="add-task__input" placeholder="Имя задачи" autofocus>
+  </div>
+  <div class="filters">
+    <div data-filter="all" class="filters__item filters__item_selected">все</div>
+    <div data-filter="done" class="filters__item">завершенные</div>
+    <div data-filter="todo" class="filters__item">незавершенные</div>
+  </div>
+  <ul class="list"></ul>
+  <div class="statistic">
+    Всего:
+    <div class="statistic__total">4</div>
+    Завершено:
+    <div class="statistic__done">1</div>
+    Осталось:
+    <div class="statistic__left">3</div>
+  </div>
+</div>
+<template id="todoTemplate" style="display: none">
+  <li class="list__item task">
+    <div class="task__status task__status_todo"></div>
+    <span class="task__name">{{TODO}}</span>
+    <div class="task__delete-button">❌</div>
+  </li>
+</template>
+<script src="app.js"></script>
 </body>
 </html>
