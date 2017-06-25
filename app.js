@@ -11,7 +11,7 @@ function calcTask1Ans(e) {
   const mods = t1Mods.value.trim().split(' ').map(el => parseInt(el));
 
   for (let i = range[0]; i <= range[1]; i++) {
-    ans += mods.every(el => i % el === 0);
+    ans += mods.some(el => i % el === 0);
   }
 
   t1Ans.textContent = ans;
@@ -33,11 +33,39 @@ function calcTask2Ans(e) {
 
   ans = factorial(word.length);
 
-  console.log(word, unique);
-
   unique.forEach(letter => ans /= factorial(word.filter(el => el === letter).length));
 
   t2Ans.textContent = ans;
 }
 
 t2Word.onkeyup = calcTask2Ans;
+
+// task3
+
+const t3Equation = document.querySelector('.task3_equation');
+const t3Ans = document.querySelector('.task3_ans');
+
+console.dir(t3Ans);
+
+function calcTask3Ans(e) {
+  let ans = 0;
+
+  const params = t3Equation.value.split('=')[0].trim().split(' ')
+    .map(el => parseInt(el));
+  const equation = t3Equation.value.split('=')[1].trim().split('*')
+    .map(el => el.split('^').map(val => parseInt(val)))
+    .reduce((mult, val) => mult * Math.pow(val[0], val[1]), 1);
+
+  console.log(params, equation);
+
+  for (let x = 1; x < 1000; x++) {
+    for (let y = 1; y < 1000; y++) {
+      if (Math.pow(x, params[0]) * Math.pow(y, params[1]) === equation)
+        ans++;
+    }
+  }
+
+  t3Ans.textContent = ans;
+}
+
+t3Equation.onkeyup = calcTask3Ans;
