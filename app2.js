@@ -45,8 +45,6 @@ t2Word.onkeyup = calcTask2Ans;
 const t3Equation = document.querySelector('.task3_equation');
 const t3Ans = document.querySelector('.task3_ans');
 
-console.dir(t3Ans);
-
 function calcTask3Ans(e) {
   let ans = 0;
 
@@ -56,10 +54,8 @@ function calcTask3Ans(e) {
     .map(el => el.split('^').map(val => parseInt(val)))
     .reduce((mult, val) => mult * Math.pow(val[0], val[1]), 1);
 
-  console.log(params, equation);
-
-  for (let x = 1; x < 1000; x++) {
-    for (let y = 1; y < 1000; y++) {
+  for (let x = 1; x < 500; x++) {
+    for (let y = 1; y < 500; y++) {
       if (Math.pow(x, params[0]) * Math.pow(y, params[1]) === equation)
         ans++;
     }
@@ -69,3 +65,25 @@ function calcTask3Ans(e) {
 }
 
 t3Equation.onkeyup = calcTask3Ans;
+
+// task4
+
+const t4Input = document.querySelector('.task4_input');
+const t4Ans = document.querySelector('.task4_ans');
+
+const gcd = (a, b) => b ? gcd(b, a % b) : a;
+
+function calcTask4Ans(e) {
+  const input = t4Input.value.split(' ').map(el => parseInt(el));
+
+  let count = 0;
+
+  for (let a = input[0]; a <= input[1]; a++) {
+    if (gcd(a, input[2]) === 1)
+      count++;
+  }
+
+  t4Ans.textContent = count * (input[1] - input[0] + 1);
+}
+
+t4Input.onkeyup = calcTask4Ans;
